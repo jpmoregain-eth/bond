@@ -124,9 +124,9 @@ function TimelineItem({ phase, date, title, description, isLeft }) {
 function Stats() {
   const stats = [
     { value: 100, suffix: '%', label: 'Open Source' },
-    { value: 15, suffix: '+', label: 'Exchanges' },
-    { value: 5, suffix: '+', label: 'Chains' },
+    { value: 6, suffix: '+', label: 'Agent Types' },
     { value: 1, suffix: '', label: 'Command Setup' },
+    { value: 0, suffix: '', label: 'Docker Needed' },
   ]
   
   return (
@@ -154,10 +154,10 @@ export default function Home() {
   }, [])
 
   const agents = [
-    { image: '/images/agent-coder.png', name: 'Crypto', role: 'Trading Agent', color: '#22c55e' },
-    { image: '/images/agent-wizard.png', name: 'AI Core', role: 'Magic Agent', color: '#8b5cf6' },
+    { image: '/images/agent-coder.png', name: 'Trading', role: 'Crypto Agent', color: '#22c55e' },
+    { image: '/images/agent-wizard.png', name: 'Coder', role: 'Dev Agent', color: '#8b5cf6' },
     { image: '/images/bear-researcher.png', name: 'Research', role: 'Analysis Agent', color: '#3b82f6' },
-    { image: '/images/agent-idea.png', name: 'Strategy', role: 'Thinker Agent', color: '#f59e0b' },
+    { image: '/images/agent-idea.png', name: 'Strategy', role: 'Planner Agent', color: '#f59e0b' },
     { image: '/images/bear-teal.png', name: 'Social', role: 'Community Agent', color: '#14b8a6' },
     { image: '/images/bear-blue.png', name: 'Support', role: 'Helper Agent', color: '#6366f1' },
   ]
@@ -184,13 +184,13 @@ export default function Home() {
     {
       icon: '🧠',
       title: 'Intelligent',
-      description: 'Powered by Claude and GPT. Smart reasoning for trading decisions, research synthesis, and automation.',
+      description: 'Powered by Claude and GPT. Smart reasoning for analysis, research synthesis, coding, and automation.',
       gradient: 'bg-gradient-to-br from-amber-500/20 to-orange-500/20'
     },
     {
-      icon: '🔗',
-      title: 'Multi-Exchange',
-      description: 'CEX and DEX support. Binance, Kraken, Uniswap, Raydium, Jupiter, and more. Multi-chain ready.',
+      icon: '📦',
+      title: 'Specialized Agents',
+      description: 'Each agent does one thing really well. Crypto trading, code review, research, social automation, and more.',
       gradient: 'bg-gradient-to-br from-indigo-500/20 to-violet-500/20'
     },
     {
