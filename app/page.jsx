@@ -272,7 +272,7 @@ export default function Home() {
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <a
-                  href="https://github.com/jpmoregain-eth/agentbear"
+                  href="/setup"
                   className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 
                     to-purple-500 text-white px-8 py-4 rounded-xl font-semibold text-lg
                     hover:shadow-xl hover:shadow-indigo-500/25 transition-all duration-300 hover:-translate-y-1"
