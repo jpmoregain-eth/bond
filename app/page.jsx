@@ -222,7 +222,7 @@ export default function Home() {
             {['Features', 'How It Works', 'Roadmap'].map((item) => (
               <a
                 key={item}
-                href={`#${item.toLowerCase().replace(' ', '-')}`}
+                href={`#${item.toLowerCase().replace(/ /g, '-')}`}
                 className="text-slate-400 hover:text-white transition-colors font-medium"
               >
                 {item}
