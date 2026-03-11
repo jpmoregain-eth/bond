@@ -614,15 +614,138 @@ export default function SetupWizard() {
           {step === 1 && mode === 'reconfigure' && (
             <div className="space-y-6">
               <h2 className="text-2xl font-bold text-gray-900">{t.welcomeBack.replace('{name}', userName)}</h2>
-              <div className="bg-teal-50 border border-teal-200 rounded-lg p-6">
+              <div className="bg-teal-50 border border-teal-200 rounded-lg p-6 mb-8">
                 <h3 className="font-bold text-gray-900 mb-4">{t.currentConfig}</h3>
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between py-2 border-b border-teal-200">
                     <span className="text-gray-700">{t.model}</span>
                     <span className="font-semibold">Claude Sonnet ✓</span>
                   </div>
+                  <div className="flex items-center justify-between py-2 border-b border-teal-200">
+                    <span className="text-gray-700">{t.exchanges}</span>
+                    <span className="font-semibold">Binance, Raydium ✓</span>
+                  </div>
+                  <div className="flex items-center justify-between py-2">
+                    <span className="text-gray-700">{t.telegram}</span>
+                    <span className="font-semibold">{t.connected} ✓</span>
+                  </div>
                 </div>
               </div>
+
+              <div className="space-y-3">
+                <p className="text-gray-700 font-semibold">{t.whatWouldYouLikeToDo}</p>
+                <label className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                  <input type="radio" name="action" value="exchange" onChange={(e) => {setStep(2)}} />
+                  <div>
+                    <p className="font-semibold text-gray-900">{t.addExchange}</p>
+                    <p className="text-sm text-gray-600">{t.addExchangeDesc}</p>
+                  </div>
+                </label>
+
+                <label className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                  <input type="radio" name="action" value="model" onChange={(e) => {setStep(2)}} />
+                  <div>
+                    <p className="font-semibold text-gray-900">{t.addModel}</p>
+                    <p className="text-sm text-gray-600">{t.addModelDesc}</p>
+                  </div>
+                </label>
+
+                <label className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                  <input type="radio" name="action" value="monitor" onChange={(e) => {setStep(2)}} />
+                  <div>
+                    <p className="font-semibold text-gray-900">{t.addMonitoring}</p>
+                    <p className="text-sm text-gray-600">{t.addMonitoringDesc}</p>
+                  </div>
+                </label>
+
+                <label className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                  <input type="radio" name="action" value="stats" onChange={(e) => {setStep(2)}} />
+                  <div>
+                    <p className="font-semibold text-gray-900">{t.viewStats}</p>
+                    <p className="text-sm text-gray-600">{t.viewStatsDesc}</p>
+                  </div>
+                </label>
+              </div>
+            </div>
+          )}
+
+          {step === 2 && mode === 'reconfigure' && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold text-gray-900">{t.addExchange}</h2>
+              <p className="text-gray-600">Available exchanges to add:</p>
+
+              <div className="space-y-3">
+                {[
+                  { name: 'Kraken', status: 'Not added' },
+                  { name: 'Bybit', status: 'Not added' },
+                  { name: 'Coinbase', status: 'Not added' },
+                  { name: 'Uniswap V3', status: 'Not added' },
+                  { name: 'PancakeSwap', status: 'Not added' },
+                ].map(ex => (
+                  <label key={ex.name} className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input type="checkbox" />
+                    <div className="flex-1">
+                      <p className="font-semibold text-gray-900">{ex.name}</p>
+                    </div>
+                    <span className="text-sm text-gray-600">{ex.status}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {step === 3 && mode === 'reconfigure' && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold text-gray-900">{t.addExchange}</h2>
+              <p className="text-gray-600 mb-4">Kraken API Setup</p>
+
+              <div className="border border-gray-300 rounded-lg p-6 space-y-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">{t.apiKeyLabel}</label>
+                  <input type="password" placeholder="Enter Kraken API key" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">{t.apiSecretLabel}</label>
+                  <input type="password" placeholder="Enter Kraken API secret" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                </div>
+                <button onClick={() => window.open('https://www.kraken.com/u/settings/api', '_blank')} className="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 font-semibold flex items-center gap-2 w-fit">
+                  {t.getKeys} 🔗
+                </button>
+              </div>
+            </div>
+          )}
+
+          {step === 4 && mode === 'reconfigure' && (
+            <div className="space-y-6 text-center">
+              <div className="text-6xl">✨</div>
+              <h2 className="text-3xl font-bold text-gray-900">{t.configUpdated}</h2>
+              <p className="text-lg text-gray-600">{t.restartMessage}</p>
+
+              <div className="bg-green-50 border border-green-200 rounded-lg p-6 space-y-3 text-left">
+                <h3 className="font-bold text-gray-900">{t.preserved}</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-center gap-3">
+                    <span className="text-green-600">✓</span>
+                    <span>{t.conversations}</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="text-green-600">✓</span>
+                    <span>{t.patterns}</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="text-green-600">✓</span>
+                    <span>{t.preferences}</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="text-green-600">✓</span>
+                    <span>{t.history}</span>
+                  </li>
+                </ul>
+              </div>
+
+              <button className="px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 font-semibold">
+                {t.gotIt}
+              </button>
             </div>
           )}
 
