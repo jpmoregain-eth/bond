@@ -23,7 +23,7 @@ function AnimatedCounter({ end, duration = 2000, suffix = '' }) {
 }
 
 // Agent Card Component
-function AgentCard({ icon, name, role, color }) {
+function AgentCard({ image, name, role, color }) {
   const [isHovered, setIsHovered] = useState(false)
   
   return (
@@ -33,7 +33,7 @@ function AgentCard({ icon, name, role, color }) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className={`
-        relative bg-[#12121a] border border-white/10 rounded-2xl p-6
+        relative bg-[#12121a] border border-white/10 rounded-2xl overflow-hidden
         transition-all duration-300 ease-out
         ${isHovered ? 'transform -translate-y-2 border-indigo-500/50' : ''}
       `}>
@@ -45,15 +45,21 @@ function AgentCard({ icon, name, role, color }) {
             background: `linear-gradient(135deg, ${color}20 0%, transparent 100%)`
           }}
         />
-        <div className="relative z-10 text-center">
-          <div className={`
-            text-4xl mb-3 transition-transform duration-300
-            ${isHovered ? 'scale-110' : ''}
-          `}>
-            {icon}
+        <div className="relative z-10">
+          <div className="aspect-square overflow-hidden">
+            <img 
+              src={image} 
+              alt={name}
+              className={`
+                w-full h-full object-cover transition-transform duration-300
+                ${isHovered ? 'scale-105' : ''}
+              `}
+            />
           </div>
-          <h3 className="font-semibold text-white mb-1">{name}</h3>
-          <p className="text-sm text-slate-400">{role}</p>
+          <div className="p-4 text-center">
+            <h3 className="font-semibold text-white mb-1">{name}</h3>
+            <p className="text-sm text-slate-400">{role}</p>
+          </div>
         </div>
         
         <div className={`
@@ -148,12 +154,12 @@ export default function Home() {
   }, [])
 
   const agents = [
-    { icon: '💰', name: 'Crypto', role: 'Trading Agent', color: '#22c55e' },
-    { icon: '📊', name: 'Research', role: 'Analysis Agent', color: '#3b82f6' },
-    { icon: '🔒', name: 'Security', role: 'Monitor Agent', color: '#ef4444' },
-    { icon: '🤖', name: 'Custom', role: 'Build Your Own', color: '#8b5cf6' },
-    { icon: '📱', name: 'Social', role: 'Automation Agent', color: '#ec4899' },
-    { icon: '⚡', name: 'DevOps', role: 'Deploy Agent', color: '#f59e0b' },
+    { image: '/images/agent-coder.png', name: 'Crypto', role: 'Trading Agent', color: '#22c55e' },
+    { image: '/images/agent-wizard.png', name: 'AI Core', role: 'Magic Agent', color: '#8b5cf6' },
+    { image: '/images/bear-researcher.png', name: 'Research', role: 'Analysis Agent', color: '#3b82f6' },
+    { image: '/images/agent-idea.png', name: 'Strategy', role: 'Thinker Agent', color: '#f59e0b' },
+    { image: '/images/bear-teal.png', name: 'Social', role: 'Community Agent', color: '#14b8a6' },
+    { image: '/images/bear-blue.png', name: 'Support', role: 'Helper Agent', color: '#6366f1' },
   ]
 
   const features = [
@@ -206,7 +212,7 @@ export default function Home() {
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <a href="#" className="flex items-center gap-3 group">
-            <span className="text-3xl animate-float">🐻</span>
+            <img src="/images/bear-teal.png" alt="AgentBear" className="w-10 h-10 rounded-lg animate-float" />
             <span className="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
               AgentBear
             </span>
@@ -430,7 +436,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3">
-              <span className="text-2xl">🐻</span>
+              <img src="/images/bear-teal.png" alt="AgentBear" className="w-8 h-8 rounded-lg" />
               <span className="font-bold text-white">AgentBear</span>
             </div>
             
