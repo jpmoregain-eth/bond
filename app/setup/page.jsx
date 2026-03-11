@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronRight, Check, AlertCircle, ExternalLink } from 'lucide-react';
 
 export default function SetupWizard() {
   const [step, setStep] = useState(1);
@@ -61,7 +60,7 @@ export default function SetupWizard() {
                       : 'bg-gray-200 text-gray-600'
                   }`}
                 >
-                  {step > s.number ? <Check size={20} /> : s.number}
+                  {step > s.number ? '✓' : s.number}
                 </div>
                 {idx < steps.length - 1 && (
                   <div
@@ -98,15 +97,15 @@ export default function SetupWizard() {
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-center gap-3">
-                    <Check className="text-teal-600" size={20} />
+                    ✓
                     <span className="text-gray-700">API key from Claude (Anthropic)</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Check className="text-teal-600" size={20} />
+                    ✓
                     <span className="text-gray-700">Binance API credentials (optional)</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Check className="text-teal-600" size={20} />
+                    ✓
                     <span className="text-gray-700">Telegram bot token</span>
                   </li>
                 </ul>
@@ -144,7 +143,7 @@ export default function SetupWizard() {
                   onClick={() => window.open('https://console.anthropic.com', '_blank')}
                   className="text-teal-600 hover:text-teal-700 font-semibold flex items-center gap-2"
                 >
-                  Get API Key <ExternalLink size={16} />
+                  Get API Key 🔗
                 </button>
               </div>
 
@@ -173,13 +172,13 @@ export default function SetupWizard() {
                   onClick={() => window.open('https://platform.openai.com/api-keys', '_blank')}
                   className="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-2"
                 >
-                  Get API Key <ExternalLink size={16} />
+                  Get API Key 🔗
                 </button>
               </div>
 
               {config.model && (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3">
-                  <Check className="text-green-600" size={20} />
+                  ✓
                   <span className="text-green-800">Model selected: {config.model === 'claude' ? 'Claude Sonnet' : 'GPT-4o'}</span>
                 </div>
               )}
@@ -247,13 +246,13 @@ export default function SetupWizard() {
                     onClick={() => window.open('https://www.binance.com/en/account/manage-api-key', '_blank')}
                     className="px-4 py-2 border border-teal-600 text-teal-600 rounded-lg hover:bg-teal-50 font-semibold flex items-center gap-2"
                   >
-                    Get Keys <ExternalLink size={16} />
+                    Get Keys 🔗
                   </button>
                 </div>
 
                 {validated.binance && (
                   <div className="bg-green-50 border border-green-200 rounded-lg p-3 flex items-center gap-2">
-                    <Check className="text-green-600" size={18} />
+                    ✓
                     <span className="text-green-800 text-sm">Credentials valid!</span>
                   </div>
                 )}
@@ -264,7 +263,7 @@ export default function SetupWizard() {
                 <div className="flex items-center justify-between">
                   <h3 className="font-bold text-lg text-gray-900">Raydium (Solana)</h3>
                   <div className="flex items-center gap-2">
-                    <Check className="text-green-600" size={18} />
+                    ✓
                     <span className="text-sm text-green-700 font-semibold">Auto-enabled</span>
                   </div>
                 </div>
@@ -287,7 +286,7 @@ export default function SetupWizard() {
                   onClick={() => window.open('https://t.me/BotFather', '_blank')}
                   className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold flex items-center gap-2 w-fit"
                 >
-                  Open @BotFather <ExternalLink size={16} />
+                  Open @BotFather 🔗
                 </button>
               </div>
 
@@ -310,7 +309,7 @@ export default function SetupWizard() {
 
               {validated.telegram && (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3">
-                  <Check className="text-green-600" size={20} />
+                  ✓
                   <div>
                     <p className="text-green-800 font-semibold">Connected!</p>
                     <p className="text-green-700 text-sm">Your agent is listening on Telegram</p>
@@ -333,15 +332,15 @@ export default function SetupWizard() {
                 <h3 className="font-bold text-gray-900">What's next:</h3>
                 <ul className="space-y-2">
                   <li className="flex items-center gap-3">
-                    <Check className="text-teal-600" size={20} />
+                    ✓
                     <span>Agent is running on port 8080</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Check className="text-teal-600" size={20} />
+                    ✓
                     <span>Chat with your bot on Telegram (@YourBondBot)</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Check className="text-teal-600" size={20} />
+                    ✓
                     <span>Try: "Find opportunities" or "Analyze BTC"</span>
                   </li>
                 </ul>
@@ -355,7 +354,7 @@ export default function SetupWizard() {
                   onClick={() => window.open('https://github.com/jpmoregain-eth/bond', '_blank')}
                   className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-semibold flex items-center gap-2"
                 >
-                  View Docs <ExternalLink size={16} />
+                  View Docs 🔗
                 </button>
               </div>
             </div>
@@ -385,7 +384,7 @@ export default function SetupWizard() {
                 : 'bg-teal-600 text-white hover:bg-teal-700'
             }`}
           >
-            Next <ChevronRight size={20} />
+            Next →
           </button>
         </div>
       </div>
