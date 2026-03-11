@@ -650,11 +650,91 @@ export default function SetupWizard() {
             </div>
           )}
 
+          {step === 3 && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold text-gray-900">{t.configureExchanges}</h2>
+              
+              <div className="border border-gray-300 rounded-lg p-6 space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-bold text-lg text-gray-900">{t.binance}</h3>
+                  <input type="checkbox" defaultChecked />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">{t.apiKeyLabel}</label>
+                  <input type="password" placeholder={t.apiKeyLabel} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">{t.apiSecretLabel}</label>
+                  <input type="password" placeholder={t.apiSecretLabel} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                </div>
+                <button className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 font-semibold">
+                  {t.validate}
+                </button>
+              </div>
+
+              <div className="border border-gray-200 rounded-lg p-6 bg-gray-50">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-bold text-lg text-gray-900">{t.raydium}</h3>
+                  <span className="text-green-600 font-semibold">✓ {t.autoEnabled}</span>
+                </div>
+                <p className="text-gray-600 text-sm mt-2">{t.noAuthRequired}</p>
+              </div>
+            </div>
+          )}
+
+          {step === 4 && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold text-gray-900">{t.connectTelegram}</h2>
+              
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 space-y-4">
+                <h3 className="font-bold text-lg text-gray-900">{t.createBot}</h3>
+                <button onClick={() => window.open('https://t.me/BotFather', '_blank')} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold">
+                  {t.openBotFather} 🔗
+                </button>
+              </div>
+
+              <div className="border border-gray-300 rounded-lg p-6 space-y-4">
+                <h3 className="font-bold text-lg text-gray-900">{t.pasteBotToken}</h3>
+                <input type="password" placeholder={t.enterTelegramToken} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                <button className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 font-semibold">
+                  {t.validate}
+                </button>
+              </div>
+            </div>
+          )}
+
           {step === 5 && (
             <div className="space-y-6 text-center">
               <div className="text-6xl">🎉</div>
               <h2 className="text-3xl font-bold text-gray-900">{t.youreAllSet}</h2>
               <p className="text-lg text-gray-600">{t.agentReady} ({agentName})</p>
+              
+              <div className="bg-teal-50 border border-teal-200 rounded-lg p-6 space-y-3 text-left">
+                <h3 className="font-bold text-gray-900">{t.whatsNext}</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-center gap-3">
+                    <span className="text-teal-600">✓</span>
+                    <span>{t.agentRunning}</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="text-teal-600">✓</span>
+                    <span>{t.chatBot}</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="text-teal-600">✓</span>
+                    <span>{t.tryCommands}</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="flex gap-3 justify-center">
+                <button className="px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 font-semibold">
+                  {t.launchAgent}
+                </button>
+                <button onClick={() => window.open('https://github.com/jpmoregain-eth/bond', '_blank')} className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-semibold">
+                  {t.viewDocs} 🔗
+                </button>
+              </div>
             </div>
           )}
         </div>
