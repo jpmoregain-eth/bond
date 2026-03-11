@@ -356,7 +356,7 @@ export default function Home() {
                 </div>
                 
                 {idx < 2 && (
-                  <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-px bg-gradient-to-r from-indigo-500 to-transparent" /
+                  <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-px bg-gradient-to-r from-indigo-500 to-transparent" />
                 )}
               </div>
             ))}
@@ -405,11 +405,11 @@ export default function Home() {
       <section className="py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-3xl blur-3xl opacity-30" /
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-3xl blur-3xl opacity-30" />
             
             <div className="relative bg-[#12121a] border border-white/10 rounded-3xl p-12 text-center"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-3xl" /
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-3xl" />
               
               <div className="relative z-10">
                 <h2 className="text-4xl lg:text-5xl font-bold mb-4">Ready to Build?</h2>
