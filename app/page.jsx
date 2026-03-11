@@ -435,8 +435,8 @@ export default function Home() {
       <footer className="border-t border-white/10 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-3">
-              <img src="/images/bear-teal.png" alt="AgentBear" className="w-8 h-8 rounded-lg" />
+            <div className="flex items-center gap-3 group cursor-pointer">
+              <img src="/images/bear-teal.png" alt="AgentBear" className="w-10 h-10 rounded-lg object-cover transition-transform duration-300 group-hover:scale-110" />
               <span className="font-bold text-white">AgentBear</span>
             </div>
             
