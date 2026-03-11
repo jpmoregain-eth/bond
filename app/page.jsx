@@ -1,147 +1,455 @@
-export default function Home() {
+'use client'
+
+import { useState, useEffect } from 'react'
+
+// Animated Counter Component
+function AnimatedCounter({ end, duration = 2000, suffix = '' }) {
+  const [count, setCount] = useState(0)
+  
+  useEffect(() => {
+    let startTime = null
+    const animate = (currentTime) => {
+      if (!startTime) startTime = currentTime
+      const progress = Math.min((currentTime - startTime) / duration, 1)
+      setCount(Math.floor(progress * end))
+      if (progress < 1) {
+        requestAnimationFrame(animate)
+      }
+    }
+    requestAnimationFrame(animate)
+  }, [end, duration])
+  
+  return <span>{count}{suffix}</span>
+}
+
+// Agent Card Component
+function AgentCard({ icon, name, role, color }) {
+  const [isHovered, setIsHovered] = useState(false)
+  
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      {/* Navigation */}
-      <nav className="sticky top-0 bg-white border-b border-gray-200 z-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-teal-600">🐻 AgentBear</div>
-          <div className="flex gap-6">
-            <a href="#features" className="text-gray-600 hover:text-gray-900">Features</a>
-            <a href="#timeline" className="text-gray-600 hover:text-gray-900">Timeline</a>
-            <a href="https://github.com/jpmoregain-eth/agentbear" className="text-gray-600 hover:text-gray-900">GitHub</a>
+    <div 
+      className="relative group cursor-pointer"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className={`
+        relative bg-[#12121a] border border-white/10 rounded-2xl p-6
+        transition-all duration-300 ease-out
+        ${isHovered ? 'transform -translate-y-2 border-indigo-500/50' : ''}
+      `}>
+        <div className={`
+          absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300
+          ${isHovered ? 'opacity-100' : ''}
+        `}
+          style={{
+            background: `linear-gradient(135deg, ${color}20 0%, transparent 100%)`
+          }}
+        />
+        <div className="relative z-10 text-center">
+          <div className={`
+            text-4xl mb-3 transition-transform duration-300
+            ${isHovered ? 'scale-110' : ''}
+          `}>
+            {icon}
           </div>
+          <h3 className="font-semibold text-white mb-1">{name}</h3>
+          <p className="text-sm text-slate-400">{role}</p>
+        </div>
+        
+        <div className={`
+          absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-${color}-500 to-transparent
+          transition-opacity duration-300
+          ${isHovered ? 'opacity-100' : 'opacity-0'}
+        `} 
+          style={{ background: `linear-gradient(90deg, transparent, ${color}, transparent)` }}
+        />
+      </div>
+    </div>
+  )
+}
+
+// Feature Card Component
+function FeatureCard({ icon, title, description, gradient }) {
+  return (
+    <div className="group relative">
+      <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="relative bg-[#12121a] border border-white/10 rounded-2xl p-8 h-full
+        hover:border-indigo-500/30 transition-all duration-300 hover:-translate-y-1"
+      >
+        <div className={`
+          w-14 h-14 rounded-xl flex items-center justify-center text-2xl mb-6
+          ${gradient}
+        `}>
+          {icon}
+        </div>
+        
+        <h3 className="text-xl font-semibold text-white mb-3">{title}</h3>
+        <p className="text-slate-400 leading-relaxed">{description}</p>
+      </div>
+    </div>
+  )
+}
+
+// Timeline Item Component
+function TimelineItem({ phase, date, title, description, isLeft }) {
+  return (
+    <div className={`flex items-center mb-12 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}>
+      <div className={`w-1/2 ${isLeft ? 'pr-12 text-right' : 'pl-12 text-left'}`}>
+        <div className="bg-[#12121a] border border-white/10 rounded-2xl p-6 hover:border-indigo-500/30 transition-all duration-300">
+          <span className="text-indigo-400 font-semibold text-sm">{date}</span>
+          <h3 className="text-lg font-semibold text-white mt-2 mb-2">{title}</h3>
+          <p className="text-slate-400 text-sm">{description}</p>
+        </div>
+      </div>
+      
+      <div className="relative flex items-center justify-center">
+        <div className="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold z-10 animate-pulse-glow"
+        >
+          {phase}
+        </div>
+      </div>
+      
+      <div className="w-1/2" />
+    </div>
+  )
+}
+
+// Stats Component
+function Stats() {
+  const stats = [
+    { value: 100, suffix: '%', label: 'Open Source' },
+    { value: 15, suffix: '+', label: 'Exchanges' },
+    { value: 5, suffix: '+', label: 'Chains' },
+    { value: 1, suffix: '', label: 'Command Setup' },
+  ]
+  
+  return (
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+      {stats.map((stat, idx) => (
+        <div key={idx} className="text-center">
+          <div className="text-4xl md:text-5xl font-bold gradient-text mb-2">
+            <AnimatedCounter end={stat.value} suffix={stat.suffix} />
+          </div>
+          <div className="text-slate-400 text-sm">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// Main Page Component
+export default function Home() {
+  const [scrolled, setScrolled] = useState(false)
+  
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const agents = [
+    { icon: '💰', name: 'Crypto', role: 'Trading Agent', color: '#22c55e' },
+    { icon: '📊', name: 'Research', role: 'Analysis Agent', color: '#3b82f6' },
+    { icon: '🔒', name: 'Security', role: 'Monitor Agent', color: '#ef4444' },
+    { icon: '🤖', name: 'Custom', role: 'Build Your Own', color: '#8b5cf6' },
+    { icon: '📱', name: 'Social', role: 'Automation Agent', color: '#ec4899' },
+    { icon: '⚡', name: 'DevOps', role: 'Deploy Agent', color: '#f59e0b' },
+  ]
+
+  const features = [
+    {
+      icon: '🎯',
+      title: 'Simple',
+      description: 'No Docker. No configuration nightmares. Download, install, pick an agent, and start working via Telegram.',
+      gradient: 'bg-gradient-to-br from-green-500/20 to-emerald-500/20'
+    },
+    {
+      icon: '🔧',
+      title: 'Modular',
+      description: 'Platform and agents are separate. Build agents independently. Community contributes. Ecosystem grows.',
+      gradient: 'bg-gradient-to-br from-blue-500/20 to-cyan-500/20'
+    },
+    {
+      icon: '🔓',
+      title: 'Open Source',
+      description: '100% open source. No vendor lock-in. Run locally or in the cloud. You own your data. MIT licensed.',
+      gradient: 'bg-gradient-to-br from-purple-500/20 to-pink-500/20'
+    },
+    {
+      icon: '🧠',
+      title: 'Intelligent',
+      description: 'Powered by Claude and GPT. Smart reasoning for trading decisions, research synthesis, and automation.',
+      gradient: 'bg-gradient-to-br from-amber-500/20 to-orange-500/20'
+    },
+    {
+      icon: '🔗',
+      title: 'Multi-Exchange',
+      description: 'CEX and DEX support. Binance, Kraken, Uniswap, Raydium, Jupiter, and more. Multi-chain ready.',
+      gradient: 'bg-gradient-to-br from-indigo-500/20 to-violet-500/20'
+    },
+    {
+      icon: '💬',
+      title: 'Telegram Native',
+      description: 'Interface through Telegram. Get notifications, issue commands, and monitor your agents from anywhere.',
+      gradient: 'bg-gradient-to-br from-sky-500/20 to-blue-500/20'
+    },
+  ]
+
+  return (
+    <div className="min-h-screen bg-[#0a0a0f] overflow-x-hidden">
+      {/* Animated Background */}
+      <div className="fixed inset-0 bg-mesh opacity-60 pointer-events-none" />
+      
+      {/* Navigation */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? 'bg-[#0a0a0f]/80 backdrop-blur-xl border-b border-white/10' : ''
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+          <a href="#" className="flex items-center gap-3 group">
+            <span className="text-3xl animate-float">🐻</span>
+            <span className="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
+              AgentBear
+            </span>
+          </a>
+          
+          <div className="hidden md:flex items-center gap-8">
+            {['Features', 'How It Works', 'Roadmap'].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase().replace(' ', '-')}`}
+                className="text-slate-400 hover:text-white transition-colors font-medium"
+              >
+                {item}
+              </a>
+            ))}
+            <a
+              href="https://github.com/jpmoregain-eth/agentbear"
+              className="text-slate-400 hover:text-white transition-colors font-medium"
+            >
+              GitHub
+            </a>
+          </div>
+          
+          <a
+            href="https://github.com/jpmoregain-eth/agentbear"
+            className="hidden md:flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-500 
+              text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg hover:shadow-indigo-500/25 
+              transition-all duration-300 hover:-translate-y-0.5"
+          >
+            <span>⭐</span> Star on GitHub
+          </a>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-        <h1 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-6">
-          AI Agents That <span className="text-teal-600">Find Opportunities</span>
-        </h1>
-        <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-          Open-source agent platform. Crypto trading analysis, research synthesis, social automation. Built for simplicity. Designed for scale.
-        </p>
-        <div className="flex gap-4 justify-center">
-          <a href="/setup" className="bg-teal-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-teal-700">
-            Try Setup Wizard
-          </a>
-          <a href="https://github.com/jpmoregain-eth/agentbear" className="border-2 border-teal-600 text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-teal-50">
-            View on GitHub
-          </a>
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Hero Content */}
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 
+                rounded-full px-4 py-2 mb-8"
+              >
+                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                <span className="text-indigo-400 font-medium text-sm">Open Source AI Agent Platform</span>
+              </div>
+              
+              <h1 className="text-5xl lg:text-7xl font-bold leading-tight mb-6">
+                AI Agents That{' '}
+                <span className="gradient-text">Find Opportunities</span>
+              </h1>
+              
+              <p className="text-xl text-slate-400 mb-8 max-w-xl mx-auto lg:mx-0">
+                Download, install, and deploy autonomous AI agents in minutes. 
+                No Docker. No complex configuration. Just pure AI automation.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a
+                  href="https://github.com/jpmoregain-eth/agentbear"
+                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 
+                    to-purple-500 text-white px-8 py-4 rounded-xl font-semibold text-lg
+                    hover:shadow-xl hover:shadow-indigo-500/25 transition-all duration-300 hover:-translate-y-1"
+                >
+                  <span>🚀</span> Get Started
+                </a>
+                
+                <a
+                  href="#features"
+                  className="inline-flex items-center justify-center gap-2 bg-white/5 border border-white/10 
+                    text-white px-8 py-4 rounded-xl font-semibold text-lg
+                    hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                >
+                  <span>📖</span> Learn More
+                </a>
+              </div>
+              
+              <Stats />
+            </div>
+            
+            {/* Hero Visual - Agent Grid */}
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/30 to-purple-500/30 rounded-3xl blur-3xl" />
+              
+              <div className="relative grid grid-cols-2 sm:grid-cols-3 gap-4"
+                style={{ transform: 'perspective(1000px) rotateY(-5deg) rotateX(5deg)' }}
+              >
+                {agents.map((agent, idx) => (
+                  <AgentCard key={idx} {...agent} />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Problem Section */}
-      <section className="bg-white border-y border-gray-200 py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-12 text-center">The Problem OpenClaw Revealed</h2>
+      {/* Features Section */}
+      <section id="features" className="py-24 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-500/5 to-transparent" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4">Why AgentBear?</h2>
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+              Built for simplicity. Designed for scale. Made for the community.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, idx) => (
+              <FeatureCard key={idx} {...feature} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section id="how-it-works" className="py-24">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4">How It Works</h2>
+            <p className="text-xl text-slate-400">From zero to autonomous AI agent in three simple steps.</p>
+          </div>
+          
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-6 bg-red-50 rounded-lg border border-red-200">
-              <h3 className="font-semibold text-red-900 mb-2">Too Complex</h3>
-              <p className="text-red-800">Users wanted AI agents. OpenClaw proved demand. But setup required Docker, APIs, configuration.</p>
-            </div>
-            <div className="p-6 bg-red-50 rounded-lg border border-red-200">
-              <h3 className="font-semibold text-red-900 mb-2">Not User-Friendly</h3>
-              <p className="text-red-800">Steep learning curve. Multi-layered features. Great for power users. Dead for everyone else.</p>
-            </div>
-            <div className="p-6 bg-red-50 rounded-lg border border-red-200">
-              <h3 className="font-semibold text-red-900 mb-2">Monolithic</h3>
-              <p className="text-red-800">Bloated platform. Hard to extend. Difficult to maintain. Not built for community.</p>
-            </div>
+            {[
+              { step: '01', title: 'Clone & Install', desc: 'Clone the repo and install dependencies with pip. No Docker required.' },
+              { step: '02', title: 'Configure', desc: 'Copy the example config, add your API keys, and pick your agent type.' },
+              { step: '03', title: 'Deploy', desc: 'Run the agent and start chatting via Telegram. AI does the rest.' },
+            ].map((item, idx) => (
+              <div key={idx} className="relative">
+                <div className="bg-[#12121a] border border-white/10 rounded-2xl p-8 text-center h-full
+                  hover:border-indigo-500/30 transition-all duration-300 group"
+                >
+                  <div className="text-6xl font-bold gradient-text mb-4 opacity-50 group-hover:opacity-100 transition-opacity"
+                  >
+                    {item.step}
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-3">{item.title}</h3>
+                  <p className="text-slate-400">{item.desc}</p>
+                </div>
+                
+                {idx < 2 && (
+                  <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-px bg-gradient-to-r from-indigo-500 to-transparent" /
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Solution Section */}
-      <section id="features" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <h2 className="text-3xl font-bold mb-12 text-center">Our Solution</h2>
-        <div className="grid md:grid-cols-2 gap-12">
-          <div>
-            <h3 className="text-2xl font-bold text-teal-600 mb-4">Simple</h3>
-            <p className="text-gray-600">Download. Install. Pick an agent. Talk on Telegram. Done. No Docker. No configuration nightmare.</p>
+      {/* Roadmap */}
+      <section id="roadmap" className="py-24 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 via-transparent to-purple-500/5" />
+        
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4">Roadmap</h2>
+            <p className="text-xl text-slate-400">Where we're headed. Built in public, with the community.</p>
           </div>
-          <div>
-            <h3 className="text-2xl font-bold text-teal-600 mb-4">Focused</h3>
-            <p className="text-gray-600">Not everything for everyone. Specialized agents that do one thing really well.</p>
-          </div>
-          <div>
-            <h3 className="text-2xl font-bold text-teal-600 mb-4">Modular</h3>
-            <p className="text-gray-600">Platform + Agents are separate. Build agents independently. Community contributes. Ecosystem grows.</p>
-          </div>
-          <div>
-            <h3 className="text-2xl font-bold text-teal-600 mb-4">Open</h3>
-            <p className="text-gray-600">100% open source. No vendor lock-in. Run locally or in cloud. You own your data.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Phase 1 Agent */}
-      <section className="bg-gradient-to-r from-teal-50 to-cyan-50 py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-6 text-center">Crypto Agent (Phase 1)</h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Find trading opportunities across CEX and DEX. Multi-chain, multi-exchange analysis. Claude reasoning for smart decisions.
-          </p>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h4 className="font-semibold text-lg mb-3">🔗 Multi-Exchange</h4>
-              <p className="text-gray-600 text-sm">Binance, Kraken, Uniswap, Raydium, Jupiter, more.</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h4 className="font-semibold text-lg mb-3">⛓️ Multi-Chain</h4>
-              <p className="text-gray-600 text-sm">Solana, Ethereum, BSC, Polygon. Expandable.</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h4 className="font-semibold text-lg mb-3">🧠 Intelligent</h4>
-              <p className="text-gray-600 text-sm">Claude analyzes opportunities. Assesses risk. Explains reasoning.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section id="timeline" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <h2 className="text-3xl font-bold mb-12 text-center">Roadmap</h2>
-        <div className="grid md:grid-cols-4 gap-6">
-          <div className="text-center">
-            <div className="bg-teal-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 font-bold">1</div>
-            <h4 className="font-semibold mb-2">Month 1</h4>
-            <p className="text-sm text-gray-600">Crypto Agent MVP shipped</p>
-          </div>
-          <div className="text-center">
-            <div className="bg-teal-500 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 font-bold">2</div>
-            <h4 className="font-semibold mb-2">Month 2-3</h4>
-            <p className="text-sm text-gray-600">Real users, validate market</p>
-          </div>
-          <div className="text-center">
-            <div className="bg-teal-400 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 font-bold">3</div>
-            <h4 className="font-semibold mb-2">Month 4-7</h4>
-            <p className="text-sm text-gray-600">Add 1-2 agents, decouple platform</p>
-          </div>
-          <div className="text-center">
-            <div className="bg-teal-300 text-gray-900 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 font-bold">4</div>
-            <h4 className="font-semibold mb-2">Month 8-12</h4>
-            <p className="text-sm text-gray-600">Community ecosystem</p>
+          
+          <div className="space-y-8">
+            {[
+              { phase: '1', date: 'Month 1', title: 'Crypto Agent MVP', desc: 'Multi-exchange trading agent with Claude-powered analysis. Live and ready.' },
+              { phase: '2', date: 'Months 2-3', title: 'Validation', desc: 'Real users, real feedback. Iterate and improve based on community input.' },
+              { phase: '3', date: 'Months 4-7', title: 'Expansion', desc: 'Research agent, social automation. Decouple to server/client architecture.' },
+              { phase: '4', date: 'Months 8-12', title: 'Ecosystem', desc: 'Community platform. Agent marketplace. Build, share, and monetize agents.' },
+            ].map((item, idx) => (
+              <div key={idx} className="flex items-center gap-6">
+                <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 
+                  flex items-center justify-center text-2xl font-bold text-white shadow-lg shadow-indigo-500/30"
+                >
+                  {item.phase}
+                </div>
+                
+                <div className="flex-grow bg-[#12121a] border border-white/10 rounded-2xl p-6
+                  hover:border-indigo-500/30 transition-all duration-300"
+                >
+                  <span className="text-indigo-400 font-semibold text-sm">{item.date}</span>
+                  <h3 className="text-xl font-semibold text-white mt-1 mb-2">{item.title}</h3>
+                  <p className="text-slate-400">{item.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="bg-teal-600 text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Build?</h2>
-          <p className="text-lg mb-8 opacity-90">Join us on GitHub. Contribute. Build agents. Shape the future of AI automation.</p>
-          <a href="https://github.com/jpmoregain-eth/agentbear" className="bg-white text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 inline-block">
-            View Repository
-          </a>
+      <section className="py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-3xl blur-3xl opacity-30" /
+            
+            <div className="relative bg-[#12121a] border border-white/10 rounded-3xl p-12 text-center"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-3xl" /
+              
+              <div className="relative z-10">
+                <h2 className="text-4xl lg:text-5xl font-bold mb-4">Ready to Build?</h2>
+                
+                <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
+                  Join us on GitHub. Contribute. Build agents. Shape the future of AI automation.
+                </p>
+                
+                <a
+                  href="https://github.com/jpmoregain-eth/agentbear"
+                  className="inline-flex items-center gap-2 bg-white text-[#0a0a0f] px-8 py-4 rounded-xl 
+                    font-bold text-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                >
+                  <span>⭐</span> Star on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-8">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p>AgentBear - Open Source AI Agent Platform</p>
-          <p className="text-sm mt-2">🐻 Where AI agents find opportunities.</p>
+      <footer className="border-t border-white/10 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">🐻</span>
+              <span className="font-bold text-white">AgentBear</span>
+            </div>
+            
+            <div className="flex gap-6">
+              {['GitHub', 'Documentation', 'Community'].map((link) => (
+                <a
+                  key={link}
+                  href="#"
+                  className="text-slate-400 hover:text-white transition-colors"
+                >
+                  {link}
+                </a>
+              ))}
+            </div>
+            
+            <p className="text-slate-500 text-sm">
+              Open Source AI Agent Platform
+            </p>
+          </div>
         </div>
       </footer>
     </div>
