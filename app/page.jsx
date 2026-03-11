@@ -22,11 +22,11 @@ export default function Home() {
           Open-source agent platform. Crypto trading analysis, research synthesis, social automation. Built for simplicity. Designed for scale.
         </p>
         <div className="flex gap-4 justify-center">
-          <a href="https://github.com/jpmoregain-eth/bond" className="bg-teal-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-teal-700">
-            View on GitHub
+          <a href="/setup" className="bg-teal-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-teal-700">
+            Try Setup Wizard
           </a>
-          <a href="#features" className="border-2 border-teal-600 text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-teal-50">
-            Learn More
+          <a href="https://github.com/jpmoregain-eth/bond" className="border-2 border-teal-600 text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-teal-50">
+            View on GitHub
           </a>
         </div>
       </section>
