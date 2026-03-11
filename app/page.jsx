@@ -212,7 +212,7 @@ export default function Home() {
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <a href="#" className="flex items-center gap-3 group">
-            <img src="/images/bear-teal.png" alt="AgentBear" className="w-10 h-10 rounded-lg transition-transform duration-300 group-hover:scale-110" />
+            <img src="/images/bear-teal.png" alt="AgentBear" className="w-10 h-10 rounded-lg animate-float object-cover" />
             <span className="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
               AgentBear
             </span>
