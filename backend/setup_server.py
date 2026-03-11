@@ -38,25 +38,57 @@ def save_setup():
         config.set("language", data.get("language", "en"))
         config.set("user_name", data.get("user_name"))
         config.set("agent_name", data.get("agent_name"))
-        config.set("model", data.get("model"))
-        config.set("model_api_key", data.get("model_api_key"))
         
-        # Save exchange configs
-        if data.get("binance_key"):
-            config.set("exchanges.binance.enabled", True)
-            config.set("exchanges.binance.api_key", data.get("binance_key"))
-            config.set("exchanges.binance.api_secret", data.get("binance_secret"))
+        # Save model configuration
+        config.set("model.primary", data.get("primary_model", "claude"))
+        config.set("model.fallback", data.get("fallback_model", "gpt4o"))
+        
+        # Save model API keys
+        if data.get("claude_api_key"):
+            config.set("model_keys.claude_api_key", data.get("claude_api_key"))
+        if data.get("openai_api_key"):
+            config.set("model_keys.openai_api_key", data.get("openai_api_key"))
+        if data.get("google_api_key"):
+            config.set("model_keys.google_api_key", data.get("google_api_key"))
+        if data.get("kimi_api_key"):
+            config.set("model_keys.kimi_api_key", data.get("kimi_api_key"))
+        
+        # Save CEX configuration
+        if data.get("binance_enabled"):
+            config.set("exchanges.cex.binance.enabled", True)
+            config.set("exchanges.cex.binance.api_key", data.get("binance_key", ""))
+            config.set("exchanges.cex.binance.api_secret", data.get("binance_secret", ""))
+        
+        if data.get("kraken_enabled"):
+            config.set("exchanges.cex.kraken.enabled", True)
+            config.set("exchanges.cex.kraken.api_key", data.get("kraken_key", ""))
+            config.set("exchanges.cex.kraken.api_secret", data.get("kraken_secret", ""))
+        
+        # Save DEX configuration (Ethereum)
+        if data.get("uniswap_v3_enabled"):
+            config.set("exchanges.dex.ethereum.uniswap_v3.enabled", True)
+        
+        if data.get("one_inch_enabled"):
+            config.set("exchanges.dex.ethereum.one_inch.enabled", True)
+        
+        # Save DEX configuration (Solana)
+        if data.get("raydium_enabled"):
+            config.set("exchanges.dex.solana.raydium.enabled", True)
+        
+        if data.get("jupiter_enabled"):
+            config.set("exchanges.dex.solana.jupiter.enabled", True)
         
         # Save Telegram config
         if data.get("telegram_token"):
-            config.set("telegram.enabled", True)
-            config.set("telegram.bot_token", data.get("telegram_token"))
+            config.set("messaging.type", "telegram")
+            config.set("messaging.bot_token", data.get("telegram_token"))
         
         config.save()
         
         return jsonify({
             "status": "success",
-            "message": "Configuration saved"
+            "message": "Configuration saved",
+            "agent_name": data.get("agent_name")
         })
     
     except Exception as e:
