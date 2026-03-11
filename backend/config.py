@@ -9,27 +9,70 @@ class Config:
         "language": "en",
         "user_name": "",
         "agent_name": "",
-        "model": "claude",
-        "model_api_key": "",
+        
+        # Model options: claude, gpt4o, gemini, kimi
+        "model": {
+            "primary": "claude",
+            "fallback": "gpt4o"
+        },
+        
+        "model_keys": {
+            "claude_api_key": "",
+            "openai_api_key": "",
+            "google_api_key": "",
+            "kimi_api_key": ""
+        },
+        
         "exchanges": {
-            "binance": {
-                "enabled": False,
-                "api_key": "",
-                "api_secret": ""
+            "cex": {
+                "binance": {
+                    "enabled": True,
+                    "api_key": "",
+                    "api_secret": ""
+                },
+                "kraken": {
+                    "enabled": False,
+                    "api_key": "",
+                    "api_secret": ""
+                }
             },
-            "raydium": {
-                "enabled": True,
-                "rpc_url": "https://api.mainnet-beta.solana.com"
+            "dex": {
+                "ethereum": {
+                    "uniswap_v3": {
+                        "enabled": False,
+                        "rpc_url": "https://eth.rpc.blxrbdn.com"
+                    },
+                    "one_inch": {
+                        "enabled": False,
+                        "rpc_url": "https://eth.rpc.blxrbdn.com"
+                    }
+                },
+                "solana": {
+                    "raydium": {
+                        "enabled": True,
+                        "rpc_url": "https://api.mainnet-beta.solana.com"
+                    },
+                    "jupiter": {
+                        "enabled": True,
+                        "rpc_url": "https://api.mainnet-beta.solana.com"
+                    }
+                }
             }
         },
-        "telegram": {
-            "bot_token": "",
-            "enabled": False
+        
+        "messaging": {
+            "type": "telegram",
+            "bot_token": ""
         },
-        "monitoring": {
-            "enabled": False,
-            "update_interval": 300,  # 5 minutes
-            "tokens": []
+        
+        "memory": {
+            "database": "agentbear_memory.db",
+            "retention": {
+                "conversations": 30,
+                "patterns": 7,
+                "preferences": "forever",
+                "snapshots": 1
+            }
         }
     }
     
