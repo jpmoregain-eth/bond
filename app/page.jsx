@@ -4,11 +4,11 @@ export default function Home() {
       {/* Navigation */}
       <nav className="sticky top-0 bg-white border-b border-gray-200 z-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-teal-600">Bond</div>
+          <div className="text-2xl font-bold text-teal-600">🐻 AgentBear</div>
           <div className="flex gap-6">
             <a href="#features" className="text-gray-600 hover:text-gray-900">Features</a>
             <a href="#timeline" className="text-gray-600 hover:text-gray-900">Timeline</a>
-            <a href="https://github.com/jpmoregain-eth/bond" className="text-gray-600 hover:text-gray-900">GitHub</a>
+            <a href="https://github.com/jpmoregain-eth/agentbear" className="text-gray-600 hover:text-gray-900">GitHub</a>
           </div>
         </div>
       </nav>
@@ -16,7 +16,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
         <h1 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-6">
-          AI Agents That <span className="text-teal-600">Bond</span> with Your Strategy
+          AI Agents That <span className="text-teal-600">Find Opportunities</span>
         </h1>
         <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
           Open-source agent platform. Crypto trading analysis, research synthesis, social automation. Built for simplicity. Designed for scale.
@@ -25,7 +25,7 @@ export default function Home() {
           <a href="/setup" className="bg-teal-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-teal-700">
             Try Setup Wizard
           </a>
-          <a href="https://github.com/jpmoregain-eth/bond" className="border-2 border-teal-600 text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-teal-50">
+          <a href="https://github.com/jpmoregain-eth/agentbear" className="border-2 border-teal-600 text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-teal-50">
             View on GitHub
           </a>
         </div>
@@ -131,7 +131,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Build?</h2>
           <p className="text-lg mb-8 opacity-90">Join us on GitHub. Contribute. Build agents. Shape the future of AI automation.</p>
-          <a href="https://github.com/jpmoregain-eth/bond" className="bg-white text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 inline-block">
+          <a href="https://github.com/jpmoregain-eth/agentbear" className="bg-white text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 inline-block">
             View Repository
           </a>
         </div>
@@ -140,8 +140,8 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-gray-900 text-gray-400 py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p>Bond - Open Source AI Agent Platform</p>
-          <p className="text-sm mt-2">Licensed to operate independently.</p>
+          <p>AgentBear - Open Source AI Agent Platform</p>
+          <p className="text-sm mt-2">🐻 Where AI agents find opportunities.</p>
         </div>
       </footer>
     </div>

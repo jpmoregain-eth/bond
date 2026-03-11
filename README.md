@@ -1,10 +1,10 @@
-# Bond - Open Source AI Agent Platform
+# AgentBear - Open Source AI Agent Platform
 
-Licensed to operate independently.
+🐻 Where AI agents find opportunities.
 
-## What is Bond?
+## What is AgentBear?
 
-Bond is an open-source AI agent platform that makes autonomous AI agents accessible to everyone. Download, install, pick an agent type, and start working with Claude or GPT via Telegram.
+AgentBear is an open-source AI agent platform that makes autonomous AI agents accessible to everyone. Download, install, pick an agent type, and start working with Claude or GPT via Telegram.
 
 **Phase 1:** Crypto trading agent (multi-exchange, multi-chain analysis)
 **Phase 2:** Research agent (news synthesis, topic monitoring)
@@ -14,8 +14,8 @@ Bond is an open-source AI agent platform that makes autonomous AI agents accessi
 
 ```bash
 # Clone the repo
-git clone https://github.com/jpmoregain-eth/bond.git
-cd bond
+git clone https://github.com/jpmoregain-eth/agentbear.git
+cd agentbear
 
 # Install dependencies
 pip install -r requirements.txt
@@ -91,4 +91,4 @@ MIT - Feel free to fork, modify, deploy however you want.
 
 ---
 
-**Bond** - Where AI agents find opportunities and bond with your strategy.
+**AgentBear** - 🐻 Open source AI agents finding opportunities.

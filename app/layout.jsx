@@ -1,7 +1,7 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'Bond - AI Agent Platform',
+  title: 'AgentBear - AI Agent Platform',
   description: 'Open-source AI agents that find opportunities across crypto markets',
 }
 
