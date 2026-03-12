@@ -318,15 +318,15 @@ export default function SetupWizard() {
                 </div>
               </div>
 
+              {/* Claude 3.5 Sonnet */}
               <div className="border-2 border-indigo-500 rounded-xl p-6 bg-indigo-500/10 relative">
-                <div className="absolute top-4 right-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm font-semibold"
-                >
-                  {t.recommended}
+                <div className="absolute top-4 right-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  ⭐ {t.recommended}
                 </div>
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h3 className="font-bold text-lg text-white">{t.claudeSonnet}</h3>
-                    <p className="text-slate-400 text-sm">Best for complex analysis</p>
+                    <h3 className="font-bold text-lg text-white">Claude 3.5 Sonnet</h3>
+                    <p className="text-slate-400 text-sm">Best reasoning for crypto analysis</p>
                   </div>
                   <input 
                     type="radio" 
@@ -338,18 +338,10 @@ export default function SetupWizard() {
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4 mb-4 text-sm text-slate-400">
-                  <div className="flex items-center gap-2">
-                    <span className="text-green-400">✓</span> {t.cost}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-green-400">✓</span> {t.speed}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-green-400">✓</span> {t.toolSupport}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-green-400">✓</span> {t.reasoning}
-                  </div>
+                  <div className="flex items-center gap-2"><span className="text-green-400">✓</span> Cost: $3/1M tokens</div>
+                  <div className="flex items-center gap-2"><span className="text-green-400">✓</span> Speed: 3-5s</div>
+                  <div className="flex items-center gap-2"><span className="text-green-400">✓</span> Full tool support</div>
+                  <div className="flex items-center gap-2"><span className="text-green-400">✓</span> Excellent reasoning</div>
                 </div>                
                 <a 
                   href="https://console.anthropic.com" 
@@ -357,7 +349,103 @@ export default function SetupWizard() {
                   rel="noopener noreferrer"
                   className="text-indigo-400 hover:text-indigo-300 font-semibold"
                 >
-                  {t.getApiKey} →
+                  Get API Key →
+                </a>
+              </div>
+
+              {/* GPT-4o */}
+              <div className="border border-white/20 rounded-xl p-6 bg-white/5">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="font-bold text-lg text-white">GPT-4o</h3>
+                    <p className="text-slate-400 text-sm">Reliable alternative, excellent reasoning</p>
+                  </div>
+                  <input 
+                    type="radio" 
+                    name="model" 
+                    value="gpt4o" 
+                    checked={config.model === 'gpt4o'} 
+                    onChange={(e) => setConfig({ ...config, model: e.target.value })} 
+                    className="w-5 h-5 accent-indigo-500"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-4 mb-4 text-sm text-slate-400">
+                  <div className="flex items-center gap-2"><span className="text-blue-400">●</span> Cost: $5/1M tokens</div>
+                  <div className="flex items-center gap-2"><span className="text-blue-400">●</span> Speed: 2-4s</div>
+                  <div className="flex items-center gap-2"><span className="text-blue-400">●</span> Full tool support</div>
+                  <div className="flex items-center gap-2"><span className="text-blue-400">●</span> Great reasoning</div>
+                </div>
+                <a 
+                  href="https://platform.openai.com/api-keys" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-indigo-400 hover:text-indigo-300 font-semibold"
+                >
+                  Get API Key →
+                </a>
+              </div>
+
+              {/* Gemini 2.0 Flash */}
+              <div className="border border-white/20 rounded-xl p-6 bg-white/5">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="font-bold text-lg text-white">Gemini 2.0 Flash</h3>
+                    <p className="text-slate-400 text-sm">Fast & cost-effective option</p>
+                  </div>
+                  <input 
+                    type="radio" 
+                    name="model" 
+                    value="gemini" 
+                    checked={config.model === 'gemini'} 
+                    onChange={(e) => setConfig({ ...config, model: e.target.value })} 
+                    className="w-5 h-5 accent-indigo-500"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-4 mb-4 text-sm text-slate-400">
+                  <div className="flex items-center gap-2"><span className="text-cyan-400">●</span> Cost: $0.075/1M tokens</div>
+                  <div className="flex items-center gap-2"><span className="text-cyan-400">●</span> Speed: 1-3s</div>
+                  <div className="flex items-center gap-2"><span className="text-cyan-400">●</span> Good quality</div>
+                  <div className="flex items-center gap-2"><span className="text-cyan-400">●</span> Best value</div>
+                </div>
+                <a 
+                  href="https://aistudio.google.com/apikey" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-indigo-400 hover:text-indigo-300 font-semibold"
+                >
+                  Get API Key →
+                </a>
+              </div>
+
+              {/* Kimi */}
+              <div className="border border-white/20 rounded-xl p-6 bg-white/5">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="font-bold text-lg text-white">Kimi (Moonshot)</h3>
+                    <p className="text-slate-400 text-sm">Bilingual, long context, international markets</p>
+                  </div>
+                  <input 
+                    type="radio" 
+                    name="model" 
+                    value="kimi" 
+                    checked={config.model === 'kimi'} 
+                    onChange={(e) => setConfig({ ...config, model: e.target.value })} 
+                    className="w-5 h-5 accent-indigo-500"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-4 mb-4 text-sm text-slate-400">
+                  <div className="flex items-center gap-2"><span className="text-amber-400">●</span> Cost: $1.4/1M tokens</div>
+                  <div className="flex items-center gap-2"><span className="text-amber-400">●</span> Speed: 2-4s</div>
+                  <div className="flex items-center gap-2"><span className="text-amber-400">●</span> 200k context</div>
+                  <div className="flex items-center gap-2"><span className="text-amber-400">●</span> 中文 support</div>
+                </div>
+                <a 
+                  href="https://platform.moonshot.cn" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-indigo-400 hover:text-indigo-300 font-semibold"
+                >
+                  Get API Key →
                 </a>
               </div>
             </div>
@@ -369,45 +457,126 @@ export default function SetupWizard() {
                 <img src="/images/bear-researcher.png" alt="Exchanges" className="w-20 h-20 object-cover rounded-xl" />
                 <div>
                   <h2 className="text-2xl font-bold text-white">{t.configureExchanges}</h2>
+                  <p className="text-slate-400 text-sm">Select CEX and DEX options</p>
                 </div>
-              </div>
-              
-              <div className="border border-white/10 rounded-xl p-6 space-y-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-bold text-lg text-white">{t.binance}</h3>
-                  <input type="checkbox" defaultChecked className="w-5 h-5 accent-indigo-500" />
-                </div>
-                <div className="space-y-3">
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-400 mb-2">{t.apiKeyLabel}</label>
-                    <input 
-                      type="password" 
-                      placeholder={t.apiKeyLabel} 
-                      className="w-full px-4 py-3 bg-[#0a0a0f] border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-400 mb-2">{t.apiSecretLabel}</label>
-                    <input 
-                      type="password" 
-                      placeholder={t.apiSecretLabel} 
-                      className="w-full px-4 py-3 bg-[#0a0a0f] border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
-                    />
-                  </div>
-                </div>                
-                <button className="px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-lg font-semibold">
-                  {t.validate}
-                </button>
               </div>
 
-              <div className="border border-white/10 rounded-xl p-6 bg-white/5">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-bold text-lg text-white">{t.raydium}</h3>
-                  <span className="text-green-400 font-semibold flex items-center gap-1">
-                    <span>✓</span> {t.autoEnabled}
-                  </span>
+              {/* CEX Section */}
+              <div className="bg-white/5 border border-white/10 rounded-xl p-6">
+                <h3 className="font-bold text-lg text-white mb-4">🏦 Centralized Exchanges (CEX)</h3>
+                
+                {/* Binance */}
+                <div className="border border-white/10 rounded-lg p-4 mb-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="font-semibold text-white">Binance</h4>
+                    <input type="checkbox" defaultChecked className="w-5 h-5 accent-indigo-500" />
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <label className="block text-sm text-slate-400 mb-2">API Key</label>
+                      <input 
+                        type="password" 
+                        placeholder="Binance API Key" 
+                        className="w-full px-4 py-2 bg-[#0a0a0f] border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-slate-400 mb-2">API Secret</label>
+                      <input 
+                        type="password" 
+                        placeholder="Binance API Secret" 
+                        className="w-full px-4 py-2 bg-[#0a0a0f] border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white text-sm"
+                      />
+                    </div>
+                    <a href="https://www.binance.com/en/account/api-management" target="_blank" rel="noopener noreferrer" className="text-indigo-400 text-sm hover:text-indigo-300">Get keys →</a>
+                  </div>
                 </div>
-                <p className="text-slate-400 text-sm mt-2">{t.noAuthRequired}</p>
+
+                {/* Kraken */}
+                <div className="border border-white/10 rounded-lg p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="font-semibold text-white">Kraken</h4>
+                    <input type="checkbox" className="w-5 h-5 accent-indigo-500" />
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <label className="block text-sm text-slate-400 mb-2">API Key</label>
+                      <input 
+                        type="password" 
+                        placeholder="Kraken API Key" 
+                        className="w-full px-4 py-2 bg-[#0a0a0f] border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-slate-400 mb-2">API Secret</label>
+                      <input 
+                        type="password" 
+                        placeholder="Kraken API Secret" 
+                        className="w-full px-4 py-2 bg-[#0a0a0f] border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white text-sm"
+                      />
+                    </div>
+                    <a href="https://www.kraken.com/u/settings/api" target="_blank" rel="noopener noreferrer" className="text-indigo-400 text-sm hover:text-indigo-300">Get keys →</a>
+                  </div>
+                </div>
+              </div>
+
+              {/* DEX Section */}
+              <div className="bg-white/5 border border-white/10 rounded-xl p-6">
+                <h3 className="font-bold text-lg text-white mb-4">🔄 Decentralized Exchanges (DEX)</h3>
+                
+                {/* Ethereum DEXes */}
+                <div className="mb-6">
+                  <h4 className="text-slate-400 font-semibold mb-3 flex items-center gap-2">
+                    <span className="text-purple-400">◆</span> Ethereum
+                  </h4>
+                  
+                  <div className="space-y-3 ml-4">
+                    {/* Uniswap V3 */}
+                    <label className="flex items-center gap-3 p-3 border border-white/10 rounded-lg cursor-pointer hover:bg-white/5">
+                      <input type="checkbox" className="w-5 h-5 accent-indigo-500" />
+                      <div>
+                        <p className="font-semibold text-white">Uniswap V3</p>
+                        <p className="text-xs text-slate-400">Most liquidity for Ethereum tokens</p>
+                      </div>
+                    </label>
+
+                    {/* 1inch */}
+                    <label className="flex items-center gap-3 p-3 border border-white/10 rounded-lg cursor-pointer hover:bg-white/5">
+                      <input type="checkbox" className="w-5 h-5 accent-indigo-500" />
+                      <div>
+                        <p className="font-semibold text-white">1inch (Aggregator)</p>
+                        <p className="text-xs text-slate-400">Find best prices across DEXes</p>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                {/* Solana DEXes */}
+                <div>
+                  <h4 className="text-slate-400 font-semibold mb-3 flex items-center gap-2">
+                    <span className="text-blue-400">◆</span> Solana
+                  </h4>
+                  
+                  <div className="space-y-3 ml-4">
+                    {/* Raydium */}
+                    <label className="flex items-center gap-3 p-3 border border-white/10 rounded-lg cursor-pointer hover:bg-white/5">
+                      <input type="checkbox" defaultChecked className="w-5 h-5 accent-indigo-500" />
+                      <div>
+                        <p className="font-semibold text-white">Raydium</p>
+                        <p className="text-xs text-slate-400">Best liquidity on Solana</p>
+                      </div>
+                    </label>
+
+                    {/* Jupiter */}
+                    <label className="flex items-center gap-3 p-3 border border-white/10 rounded-lg cursor-pointer hover:bg-white/5">
+                      <input type="checkbox" defaultChecked className="w-5 h-5 accent-indigo-500" />
+                      <div>
+                        <p className="font-semibold text-white">Jupiter (Aggregator)</p>
+                        <p className="text-xs text-slate-400">Best prices across Solana DEXes</p>
+                      </div>
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
           )}

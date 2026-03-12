@@ -277,7 +277,7 @@ export default function Home() {
                     to-purple-500 text-white px-8 py-4 rounded-xl font-semibold text-lg
                     hover:shadow-xl hover:shadow-indigo-500/25 transition-all duration-300 hover:-translate-y-1"
                 >
-                  <span>🚀</span> Get Started
+                  <span>🚀</span> DEMO
                 </a>
                 
                 <a
