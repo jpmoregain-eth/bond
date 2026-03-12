@@ -5,14 +5,14 @@ import Image from 'next/image';
 
 const translations = {
   en: {
-    title: 'AgentBear Setup Wizard',
-    subtitle: 'Configure your Crypto Agent in 5 minutes',
-    subtitleReconfigure: 'Add new exchanges and APIs to your existing setup',
+    title: 'Agent Bear Corps Setup Wizard',
+    subtitle: 'Configure your Agent in 5 minutes',
+    subtitleReconfigure: 'Add new agents and APIs to your existing setup',
     newSetup: 'New Setup',
     reconfigure: 'Reconfigure',
-    welcome: 'Welcome to AgentBear',
+    welcome: 'Welcome to Agent Bear Corps',
     welcomeBack: 'Welcome back, {name}! 👋',
-    welcomeDesc: 'This wizard will guide you through setting up the Crypto Agent in just a few minutes.',
+    welcomeDesc: 'This wizard will guide you through setting up your agent in just a few minutes.',
     youllNeed: "You'll need:",
     apiKey: 'API key from Claude (Anthropic)',
     binanceOptional: 'Binance API credentials (optional)',
@@ -51,11 +51,11 @@ const translations = {
     connected: 'Connected!',
     agentListening: 'Your agent is listening on Telegram',
     youreAllSet: "You're All Set!",
-    agentReady: 'Your AgentBear Crypto Agent is ready to find opportunities',
+    agentReady: 'Your Agent Bear Corps agent is ready to work for you',
     whatsNext: "What's next:",
     agentRunning: 'Agent is running on port 8080',
-    chatBot: 'Chat with your bot on Telegram (@YourAgentBearBot)',
-    tryCommands: 'Try: "Find opportunities" or "Analyze BTC"',
+    chatBot: 'Chat with your bot on Telegram (@YourAgentBot)',
+    tryCommands: 'Try: "Help" or "What can you do?"',
     launchAgent: 'Launch Agent',
     viewDocs: 'View Docs',
     back: 'Back',
@@ -137,8 +137,8 @@ export default function SetupWizard() {
         <nav className="relative z-10 border-b border-white/10 py-4">
           <div className="max-w-4xl mx-auto px-4 flex justify-between items-center">
             <a href="/" className="flex items-center gap-3 group">
-              <img src="/images/bear-teal.png" alt="AgentBear" className="w-10 h-10 rounded-lg animate-float object-cover" />
-              <span className="text-xl font-bold text-white">AgentBear</span>
+              <img src="/images/agentbearcorps-logo.png" alt="Agent Bear Corps" className="w-10 h-10 rounded-lg animate-float object-cover" />
+              <span className="text-xl font-bold text-white">Agent Bear Corps</span>
             </a>
             <select
               value={language}
@@ -233,8 +233,8 @@ export default function SetupWizard() {
         <div className="max-w-4xl mx-auto px-4 flex justify-between items-start">
           <div>
             <a href="/" className="flex items-center gap-3 group mb-2">
-              <img src="/images/bear-teal.png" alt="AgentBear" className="w-10 h-10 rounded-lg animate-float object-cover" />
-              <span className="text-xl font-bold text-white">AgentBear</span>
+              <img src="/images/agentbearcorps-logo.png" alt="Agent Bear Corps" className="w-10 h-10 rounded-lg animate-float object-cover" />
+              <span className="text-xl font-bold text-white">Agent Bear Corps</span>
             </a>
             <p className="text-slate-400 text-sm">{t.subtitle}</p>
             {userName && (
