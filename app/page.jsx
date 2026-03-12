@@ -212,9 +212,9 @@ export default function Home() {
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <a href="#" className="flex items-center gap-3 group">
-            <img src="/images/bear-teal.png" alt="AgentBear" className="w-10 h-10 rounded-lg animate-float object-cover" />
+            <img src="/images/agentbearcorps-logo.png" alt="Agent Bear Corps" className="w-10 h-10 rounded-lg animate-float object-cover" />
             <span className="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
-              AgentBear
+              Agent Bear Corps
             </span>
           </a>
           
@@ -315,7 +315,7 @@ export default function Home() {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4">Why AgentBear?</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4">Why Agent Bear Corps?</h2>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
               Built for simplicity. Designed for scale. Made for the community.
             </p>
@@ -436,8 +436,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3 group cursor-pointer">
-              <img src="/images/bear-teal.png" alt="AgentBear" className="w-10 h-10 rounded-lg object-cover transition-transform duration-300 group-hover:scale-110" />
-              <span className="font-bold text-white">AgentBear</span>
+              <img src="/images/agentbearcorps-logo.png" alt="Agent Bear Corps" className="w-10 h-10 rounded-lg object-cover transition-transform duration-300 group-hover:scale-110" />
+              <span className="font-bold text-white">Agent Bear Corps</span>
             </div>
             
             <div className="flex gap-6">
@@ -468,7 +468,7 @@ export default function Home() {
             </div>
             
             <p className="text-slate-500 text-sm">
-              Open Source AI Agent Platform
+              © 2026 Agent Bear Corps — Open Source AI Platform
             </p>
           </div>
         </div>
