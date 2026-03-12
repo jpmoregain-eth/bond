@@ -457,13 +457,13 @@ export default function SetupWizard() {
                 <img src="/images/bear-researcher.png" alt="Exchanges" className="w-20 h-20 object-cover rounded-xl" />
                 <div>
                   <h2 className="text-2xl font-bold text-white">{t.configureExchanges}</h2>
-                  <p className="text-slate-400 text-sm">Select CEX and DEX options</p>
+                  <p className="text-slate-400 text-sm">Select exchange options</p>
                 </div>
               </div>
 
               {/* CEX Section */}
               <div className="bg-white/5 border border-white/10 rounded-xl p-6">
-                <h3 className="font-bold text-lg text-white mb-4">🏦 Centralized Exchanges (CEX)</h3>
+                <h3 className="font-bold text-lg text-white mb-4">🏦 Exchange Options</h3>
                 
                 {/* Binance */}
                 <div className="border border-white/10 rounded-lg p-4 mb-4">
@@ -492,92 +492,10 @@ export default function SetupWizard() {
                   </div>
                 </div>
 
-                {/* Kraken */}
-                <div className="border border-white/10 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-3">
-                    <h4 className="font-semibold text-white">Kraken</h4>
-                    <input type="checkbox" className="w-5 h-5 accent-indigo-500" />
-                  </div>
-                  <div className="space-y-3">
-                    <div>
-                      <label className="block text-sm text-slate-400 mb-2">API Key</label>
-                      <input 
-                        type="password" 
-                        placeholder="Kraken API Key" 
-                        className="w-full px-4 py-2 bg-[#0a0a0f] border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white text-sm"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm text-slate-400 mb-2">API Secret</label>
-                      <input 
-                        type="password" 
-                        placeholder="Kraken API Secret" 
-                        className="w-full px-4 py-2 bg-[#0a0a0f] border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white text-sm"
-                      />
-                    </div>
-                    <a href="https://www.kraken.com/u/settings/api" target="_blank" rel="noopener noreferrer" className="text-indigo-400 text-sm hover:text-indigo-300">Get keys →</a>
-                  </div>
-                </div>
+                {/* Kraken - REMOVED */}
               </div>
 
-              {/* DEX Section */}
-              <div className="bg-white/5 border border-white/10 rounded-xl p-6">
-                <h3 className="font-bold text-lg text-white mb-4">🔄 Decentralized Exchanges (DEX)</h3>
-                
-                {/* Ethereum DEXes */}
-                <div className="mb-6">
-                  <h4 className="text-slate-400 font-semibold mb-3 flex items-center gap-2">
-                    <span className="text-purple-400">◆</span> Ethereum
-                  </h4>
-                  
-                  <div className="space-y-3 ml-4">
-                    {/* Uniswap V3 */}
-                    <label className="flex items-center gap-3 p-3 border border-white/10 rounded-lg cursor-pointer hover:bg-white/5">
-                      <input type="checkbox" className="w-5 h-5 accent-indigo-500" />
-                      <div>
-                        <p className="font-semibold text-white">Uniswap V3</p>
-                        <p className="text-xs text-slate-400">Most liquidity for Ethereum tokens</p>
-                      </div>
-                    </label>
-
-                    {/* 1inch */}
-                    <label className="flex items-center gap-3 p-3 border border-white/10 rounded-lg cursor-pointer hover:bg-white/5">
-                      <input type="checkbox" className="w-5 h-5 accent-indigo-500" />
-                      <div>
-                        <p className="font-semibold text-white">1inch (Aggregator)</p>
-                        <p className="text-xs text-slate-400">Find best prices across DEXes</p>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-
-                {/* Solana DEXes */}
-                <div>
-                  <h4 className="text-slate-400 font-semibold mb-3 flex items-center gap-2">
-                    <span className="text-blue-400">◆</span> Solana
-                  </h4>
-                  
-                  <div className="space-y-3 ml-4">
-                    {/* Raydium */}
-                    <label className="flex items-center gap-3 p-3 border border-white/10 rounded-lg cursor-pointer hover:bg-white/5">
-                      <input type="checkbox" defaultChecked className="w-5 h-5 accent-indigo-500" />
-                      <div>
-                        <p className="font-semibold text-white">Raydium</p>
-                        <p className="text-xs text-slate-400">Best liquidity on Solana</p>
-                      </div>
-                    </label>
-
-                    {/* Jupiter */}
-                    <label className="flex items-center gap-3 p-3 border border-white/10 rounded-lg cursor-pointer hover:bg-white/5">
-                      <input type="checkbox" defaultChecked className="w-5 h-5 accent-indigo-500" />
-                      <div>
-                        <p className="font-semibold text-white">Jupiter (Aggregator)</p>
-                        <p className="text-xs text-slate-400">Best prices across Solana DEXes</p>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-              </div>
+              {/* DEX Section - REMOVED */}
             </div>
           )}
 
