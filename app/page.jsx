@@ -441,15 +441,30 @@ export default function Home() {
             </div>
             
             <div className="flex gap-6">
-              {['GitHub', 'Documentation', 'Community'].map((link) => (
-                <a
-                  key={link}
-                  href="#"
-                  className="text-slate-400 hover:text-white transition-colors"
-                >
-                  {link}
-                </a>
-              ))}
+              <a
+                href="https://github.com/jpmoregain-eth/agentbear"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-400 hover:text-white transition-colors"
+              >
+                GitHub
+              </a>
+              <a
+                href="https://github.com/jpmoregain-eth/agentbear#readme"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-400 hover:text-white transition-colors"
+              >
+                Documentation
+              </a>
+              <a
+                href="https://github.com/jpmoregain-eth/agentbear/discussions"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-400 hover:text-white transition-colors"
+              >
+                Community
+              </a>
             </div>
             
             <p className="text-slate-500 text-sm">
