@@ -7,7 +7,7 @@ const inter = Inter({
 })
 
 export const metadata = {
-  title: 'AgentBear 🐻 — AI Agents That Find Opportunities',
+  title: 'AgentBear 🐻 — AI Agents That Work for You',
   description: 'Open-source AI agent platform. Download, install, and deploy autonomous AI agents in minutes. No Docker. No complex configuration.',
 }
 

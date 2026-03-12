@@ -262,7 +262,7 @@ export default function Home() {
               
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight mb-6">
                 AI Agents That{' '}
-                <span className="gradient-text">Find Opportunities</span>
+                <span className="gradient-text">Work for You</span>
               </h1>
               
               <p className="text-xl text-slate-400 mb-8 max-w-xl mx-auto lg:mx-0">
